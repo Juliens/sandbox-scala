@@ -23,7 +23,8 @@ import scala.io.Source;
       println(boxes(0).getAllPossibleNextIn(boxes) mkString "\n");
       */
       val stackes:Array[Array[Box]] = for (stack <- boxes) yield stack.getLongestStackIn(boxes);
-      println(Box.biggestBoxesHeight(stackes) mkString "\n");
+      //println(Box.biggestBoxesHeight(stackes) mkString "\n");
+      println(Box.getBoxesHeight(Box.biggestBoxesHeight(stackes)));
     }
 
     def createFromList(list:Array[String]):Unit = {
@@ -81,7 +82,7 @@ import scala.io.Source;
 
 
     def getLongestStackIn(that:Array[Box]):Array[Box] = {
-      val stackes:Array[Array[Box]] = for (stack <- this.getAllPossibleNextIn(that)) yield stack.getLongestStackIn(that);
+      val stackes:Array[Array[Box]] = for (stack <- this.getAllPossibleNextIn(that)) yield stack.getLongestStackIn(that filter (_.id != this.id));
       if (stackes.length>0) {
         Array[Box](this) ++ Box.biggestBoxesHeight(stackes);
       } else {
