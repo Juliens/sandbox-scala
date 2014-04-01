@@ -8,8 +8,6 @@ name := "My TEST"
 
 version := "0.1"
 
-organization := "org.clapper"
-
 scalaVersion := "2.10.3"
 
 libraryDependencies += "org.mongodb" %% "casbah" % "2.7.0-RC2"
